@@ -1,1 +1,1 @@
-# Balance_Control_o_a_Ball
+# Balance_Control_of_a_Ball

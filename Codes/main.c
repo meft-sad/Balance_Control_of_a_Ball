@@ -230,25 +230,110 @@
 
 // 	return 0;
 // }
+/*__________________Blink led________________*/
+// #include <avr/io.h>
+// #include <util/delay.h>
+// #include <avr/interrupt.h>
+// #include <stdio.h>
 
+// int main(void)
+// {
+// 	DDRB=0xFF;
+// 	//DDRB=(1<<DDB7);
+// 	while (1) 
+// 	{
+// 		//PORTB = ; 
+// 		PORTB = (1<<PB7);
+// 		_delay_ms(1000);
+// 		PORTB = 0b00000000; 
+// 		//PORTB = (0<<PB7);
+// 		_delay_ms(1000);
+// 	}
+// 		return (0);
+// }
+/*___________________________ Para ver isto______________*/
+#include <Arduino.h>
 #include <avr/io.h>
 #include <util/delay.h>
 #include <avr/interrupt.h>
 #include <stdio.h>
+#include <math.h>
+
+/* define baud rate as BAUD before this (can be defined externaly)*/
+#define BAUD  9600
+#define UBRRVAL F_CPU/8/BAUD-1
+
+
+static int uputc(char,FILE*);
+
+static int uputc(char c,FILE *stream)
+{
+	if (c == '\n')
+		uputc('\r',stream);
+	loop_until_bit_is_set(UCSR0A, UDRE0);	/* wait until we can send a new byte */
+	UDR0 = (uint8_t) c;
+	return 0;
+}
+
+static FILE mystdout = FDEV_SETUP_STREAM(uputc, NULL,_FDEV_SETUP_WRITE);
+
+
+void init_adc(void)
+{
+	ADMUX = _BV(REFS0) | _BV(MUX1); // PIN A2
+	ADCSRA = _BV(ADEN)|_BV(ADATE)|_BV(ADSC)|_BV(ADPS2);
+}
+
+//uart receive isr
+ISR(USART0_RX_vect)
+{
+	uint8_t c = UDR0;
+	putchar(c);
+}
 
 int main(void)
 {
-	int pinsas=0b00100000;
-	DDRB=0xFF;
-	//DDRB=(1<<DDB7);
-	while (1) 
-	{
-		//PORTB = ; 
-		PORTB = (1<<PB7);
-		_delay_ms(1000);
-		PORTB = 0b00000000; 
-		//PORTB = (0<<PB7);
-		_delay_ms(1000);
+	int v;
+	int count=0;
+	float tempC ;
+  byte precision = 4;
+	char floatBuffer[20];
+  char printBuffer[80];
+
+	stdout=&mystdout;
+	init_adc();
+	/* pin config */
+	DDRB = (1 << DDB5);
+	PORTB=(1<<PB5);
+	DDRF = 0b00000000;
+	/* uart config */
+	UCSR0A = (1 << U2X0); /* this sets U2X0 to 1 */
+	UCSR0B = (1 << RXEN0) | (1 << TXEN0) | (1 << RXCIE0);
+	UCSR0C = (3 << UCSZ00); /* this sets UCSZ00 to 3 */
+
+	/* baudrate setings (variable set by macros) */
+	UBRR0H = (UBRRVAL) >> 8;
+	UBRR0L = UBRRVAL;
+
+	/* ADC cfg */
+	sei();							  /* enable interrupts */
+	puts("Buongiorno");
+
+	
+
+	for (;;) {
+		
+    	 v=(ADCL | ADCH<<8);
+		 if (v >=100)
+		 {
+	 		tempC = (float)v/1024*5.0;
+             dtostrf(tempC, precision+3, precision, floatBuffer);
+            sprintf(printBuffer, "With %%.%df precision, x = %s", precision, floatBuffer);
+  			puts(printBuffer);
+		 }
+		 _delay_ms(1000);
+		
+    
+		//nothing here, all is done on the uart interrupt/
 	}
-		return (0);
 }

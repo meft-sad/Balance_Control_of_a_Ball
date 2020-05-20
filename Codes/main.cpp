@@ -10,6 +10,7 @@
 #define __Main_1
 
 
+
 #ifdef __Main_1 
 	/*__________________Main code________________*/
 	#include <Servo.h>  //add '<' and '>' before and after servo.h
@@ -36,7 +37,7 @@
 	float accelerometer_z;
 	float temperature;
 	float gyro_x;
-	float	gyro_y;
+	float gyro_y;
 	float gyro_z;
 
 
@@ -47,7 +48,13 @@
 	int Equi_ON =0;
 	int GA_ON=0;
 	char str[20];
-
+	int ang=90;
+	int show_ang=0;
+	int dezenas =0;
+	int centenas =0;
+	int unidades =0;
+	int centezimas=0;
+	int DONT = 0;
 	
  
 	int servoPin = 10;
@@ -90,13 +97,13 @@
 
 	void init_adc(void)
 	{
-		
 		ADMUX = (1<<REFS0) | (1 << MUX1); // PIN A2
 		//ADCSRA &= ~(1 << ADIF);
 		ADCSRA = (~(1 << ADIF))|(1 << ADATE)|(1 << ADSC)|(1 << ADPS2);
 		//ADCSRA |= (1 << ADPS2)| (1 << ADPS1)| (1 << ADPS0);
 		ADCSRA |= (1 << ADIE);
 	}
+
 	void init_UART(void)
 	{
 		/* uart config */
@@ -144,6 +151,86 @@
 			printf("Active\n\r");
 		}
 	}
+//			 __A__
+//		F	|     | B
+//			|__G__|
+//		E	|     | C
+//			|__D__|
+	void code_numeros(int i,int t)
+	{
+		//Pin PF7->A
+		//Pin PF6->B
+		//Pin PF5->C
+		//Pin PF4->D
+		//Pin PF3->E
+		//Pin PF2->F
+		//Pin PF1->G
+
+		if (i == 1)
+			PORTF = 0b10011111;
+		else if (i == 2)
+			PORTF = 0b00100101;
+		else if (i == 3)
+			PORTF = 0b00001101;
+		else if (i == 4)
+			PORTF = 0b10011001;
+		else if (i == 5)
+			PORTF = 0b01001001;
+		else if (i == 6)
+			PORTF = 0b01000001;
+		else if (i == 7)
+			PORTF = 0b00011111;
+		else if (i == 8)
+			PORTF = 0b00000001;
+		else if (i == 9)
+			PORTF = 0b00001001;
+		else if (i == 0)
+			PORTF = 0b00000011;
+		else
+			printf("ERROR");
+		if (t == 1)
+			PORTF &= ~(1<<PORTF0);
+		else
+		{
+			/* code */
+		}
+		
+		//PORTK = 0b00001111;
+		//PORTK = 0b00000000;
+		
+	}
+	void Show_val(int atual_ang)
+	{
+		if (DONT == 1)
+		{
+			dezenas = (atual_ang%100)/10;
+			centenas = (atual_ang-dezenas*10)/100;
+			unidades = atual_ang-centenas*100-dezenas*10;
+			centezimas=0;
+		}
+		// dtostrf(centenas, 3, 0, str);
+		// printf(str);
+		// printf("\n\r");
+		PORTK = 0b00001000;
+		code_numeros(centenas,0);
+		_delay_ms(2);
+		// dtostrf(dezenas, 3, 0, str);
+		// printf(str);
+		PORTK = 0b00000100;
+		code_numeros(dezenas,0);
+		_delay_ms(2);
+		// dtostrf(unidades, 3, 0, str);
+		// printf(str);
+		// printf("\n\r");
+		PORTK = 0b00000010;
+		code_numeros(unidades,1);
+		_delay_ms(2);
+		PORTK = 0b00000001;
+		code_numeros(centezimas,0);
+		//_delay_ms(1.5);
+		
+
+	}
 
 	void Controle(void)
 	{
@@ -161,7 +248,7 @@
 				printf("The ADC is OFF");
 				OFF_ADC();
 			}
-			else if (strncmp(rx_buffer,"GAON",4) == 0)
+			else if (strncmp(rx_buffer,"GA",2) == 0)
 			{
 				frist_time=1;
 				ON_AG();
@@ -171,10 +258,38 @@
 			{
 				PAG=1-PAG;
 			}
-			else if (strncmp(rx_buffer,"EQON",4) == 0)
+			else if (strncmp(rx_buffer,"EQ",2) == 0)
 			{
 				Equi_ON=1-Equi_ON;
+				printf("OKOK\n\r");
 			}
+			else if (strncmp(rx_buffer,"SERVOS",6) == 0)
+			{
+				servo.write(ang);
+			}
+			else if (strncmp(rx_buffer,"SERVO+",6) == 0)
+			{
+				ang = ang+5;
+				servo.write(ang);
+			}
+			else if (strncmp(rx_buffer,"SERVO-",6) == 0)
+			{
+				ang = ang-5;
+				servo.write(ang);
+			}
+		}
+		else if (!(PINB & (1 << PINB0)))
+		{
+				//printf("Ola");
+				ang = ang-5;
+				servo.write(ang);
+				_delay_ms(100);
+		}
+		else if (!(PINB & (1 << PINB1)))
+		{
+				ang = ang+5;
+				servo.write(ang);
+				_delay_ms(100);
 		}
 		else
 		{
@@ -220,16 +335,21 @@
 		// DDRB = (1 << DDB5);
 		// PORTB=(1<<PB5);
 		// DDRF = 0b00000000;
-		
-
+		DDRB &= ~(1<<DDB1 |1<<DDB0);
+		DDRF = 0b11111111;
+		DDRK = 0b00001111;
 		/* ADC cfg */
 		sei();							  /* enable interrupts */
 
 		Manuel();
+		PORTK = 0b00001111;
+		code_numeros(0,0);
+		//_delay_ms(1000);
 
 		while(1) 
-		{
+		{	
 			Controle();
+
 			if (v >0 && ADC_ON==1)
 			{
 				tempC = (float)v/1023*5.0;
@@ -268,41 +388,64 @@
 				}
 				if (Equi_ON == 1)
 				{
-					atual_ang = (int)accAngleX+92;
-					//printf("Aqui ok mesmo\n\r");
-					if (abs(atual_ang-90)<=5)
+					atual_ang = (int)accAngleX+ang;
+					if (abs(atual_ang-show_ang) > 3)
 					{
-						//printf("1\n\r");
-						servo.write(atual_ang);
+						show_ang = atual_ang;
+						DONT = 0;
 					}
-					else if (atual_ang<80)
+					else
 					{
-						//printf("2\n\r");
+						DONT = 1;
+					}
+					
+					for (size_t i = 0; i < 10; i++)
+					{
+						_delay_ms(20);
+						Show_val(show_ang);
+						_delay_ms(5);
+					}
+					
+					
+					//printf("Aqui ok mesmo\n\r");
+					// if (abs(atual_ang-90)<=5)
+					// {
+					// 	//printf("1\n\r");
+					// 	servo.write(atual_ang);
+					// }
+					servo.detach();
+					if (atual_ang<70)
+					{
+						servo.attach(servoPin);	
+						printf("2\n\r");
 						for(servoAngle = 180-atual_ang; servoAngle > 90; servoAngle--)  //move the micro servo from 0 degrees to 180 degrees
 						{           
-												
+									
 							servo.write(servoAngle); 
 							// dtostrf(servoAngle, 3, 0, str);  
-							// printf(str);           
+							// printf(str);  
+							Show_val(atual_ang);        
 							_delay_ms(5);                
 						}
 					}
-					else if (atual_ang>100)
+					else if (atual_ang>110)
 					{
-						//printf("3\n\r");
+						servo.attach(servoPin);
+						printf("3\n\r");
 						for(servoAngle = 180-atual_ang; servoAngle < 90; servoAngle++)  //move the micro servo from 0 degrees to 180 degrees
 						{           
 												
 							servo.write(servoAngle); 
 							// dtostrf(servoAngle, 3, 0, str);  
-							// printf(str);           
+							// printf(str);
+							Show_val(atual_ang);          
 							_delay_ms(5);                
 						}
 					}
 				}
 			}
 			clear_buffer();
-			_delay_ms(100);
+			_delay_ms(20);
 			
 		
 		}
@@ -394,14 +537,14 @@ void loop()
 {
 //control the servo's direction and the position of the motor
  
-   servo.write(0);      // Turn SG90 servo Left to 45 degrees
-   delay(1000);          // Wait 1 second
-   servo.write(90);      // Turn SG90 servo back to 90 degrees (center position)
-   delay(1000);          // Wait 1 second
-   servo.write(180);     // Turn SG90 servo Right to 135 degrees
-   delay(1000);          // Wait 1 second
-   servo.write(90);      // Turn SG90 servo back to 90 degrees (center position)
-   delay(1000);
+//    servo.write(0);      // Turn SG90 servo Left to 45 degrees
+//    delay(1000);          // Wait 1 second
+//    servo.write(90);      // Turn SG90 servo back to 90 degrees (center position)
+//    delay(1000);          // Wait 1 second
+//    servo.write(180);     // Turn SG90 servo Right to 135 degrees
+//    delay(1000);          // Wait 1 second
+//    servo.write(90);      // Turn SG90 servo back to 90 degrees (center position)
+//    delay(1000);
  
 //end control the servo's direction and the position of the motor
  
@@ -409,17 +552,20 @@ void loop()
 //control the servo's speed  
  
 //if you change the delay value (from example change 50 to 10), the speed of the servo changes
-  for(servoAngle = 0; servoAngle < 180; servoAngle++)  //move the micro servo from 0 degrees to 180 degrees
+  for(servoAngle = 0; servoAngle <60; servoAngle++)  //move the micro servo from 0 degrees to 180 degrees
   {                                  
     servo.write(servoAngle);              
     delay(50);                  
   }
+  servo.detach();
+  delay(10000);
+  servo.attach(servoPin);
  
-  for(servoAngle = 180; servoAngle > 0; servoAngle--)  //now move back the micro servo from 0 degrees to 180 degrees
-  {                                
-    servo.write(servoAngle);          
-    delay(10);      
-  }
+//   for(servoAngle = 180; servoAngle > 0; servoAngle--)  //now move back the micro servo from 0 degrees to 180 degrees
+//   {                                
+//     servo.write(servoAngle);          
+//     delay(10);      
+//   }
   //end control the servo's speed  
 }
 #endif

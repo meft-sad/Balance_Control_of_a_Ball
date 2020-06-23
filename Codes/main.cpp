@@ -7,7 +7,7 @@
 #include <string.h>
 #include <math.h>
 
-#define __Main_1
+#define __Main_5
 
 
 
@@ -42,20 +42,21 @@
 
 
 	int v;
-	int ADC_ON=0;
-	int frist_time=0;
+	int ADC_ON = 0;
+	int frist_time = 0;
 	int PAG = 0;
-	int Equi_ON =0;
-	int GA_ON=0;
+	int Equi_ON = 0;
+	int GA_ON = 0;
 	char str[20];
-	int ang=90;
-	int show_ang=0;
-	int dezenas =0;
-	int centenas =0;
-	int unidades =0;
-	int centezimas=0;
+	int ang = 90;
+	int show_ang= 0;
+	int dezenas = 0;
+	int centenas = 0;
+	int unidades = 0;
+	int centezimas = 0;
 	int DONT = 0;
-	
+	int ang_cent;
+	int delay_me = 20;
  
 	int servoPin = 10;
 	Servo servo;  
@@ -151,21 +152,8 @@
 			printf("Active\n\r");
 		}
 	}
-//			 __A__
-//		F	|     | B
-//			|__G__|
-//		E	|     | C
-//			|__D__|
-	void code_numeros(int i,int t)
+	void numero(int i)
 	{
-		//Pin PF7->A
-		//Pin PF6->B
-		//Pin PF5->C
-		//Pin PF4->D
-		//Pin PF3->E
-		//Pin PF2->F
-		//Pin PF1->G
-
 		if (i == 1)
 			PORTF = 0b10011111;
 		else if (i == 2)
@@ -188,48 +176,52 @@
 			PORTF = 0b00000011;
 		else
 			printf("ERROR");
-		if (t == 1)
-			PORTF &= ~(1<<PORTF0);
-		else
-		{
-			/* code */
-		}
-		
+	}
+//			 __A__
+//		F	|     | B
+//			|__G__|
+//		E	|     | C
+//			|__D__|
+	void code_numeros(int c,int d, int u, int f, int de)
+	{
+		//Pin PF7->A
+		//Pin PF6->B
+		//Pin PF5->C
+		//Pin PF4->D
+		//Pin PF3->E
+		//Pin PF2->F
+		//Pin PF1->G
+		PORTK = 0b00001000;
+		numero(c);
+		_delay_ms(1.4);
+		PORTK = 0b00000010;
+		numero(u);
+		PORTF &= ~(1<<PORTF0);
+		_delay_ms(1.4);
+		PORTK = 0b00000001;
+		numero(f);
+		_delay_ms(1.4);
+		PORTK = 0b00000100;
+		numero(d);
+		_delay_ms(0.4);
 		//PORTK = 0b00001111;
 		//PORTK = 0b00000000;
 		
 	}
-	void Show_val(int atual_ang)
+	void Show_val(int atual_ang,int de)
 	{
-		if (DONT == 1)
+		if (DONT == 0)
 		{
 			dezenas = (atual_ang%100)/10;
 			centenas = (atual_ang-dezenas*10)/100;
 			unidades = atual_ang-centenas*100-dezenas*10;
 			centezimas=0;
 		}
+		
 		// dtostrf(centenas, 3, 0, str);
 		// printf(str);
 		// printf("\n\r");
-		PORTK = 0b00001000;
-		code_numeros(centenas,0);
-		_delay_ms(2);
-		// dtostrf(dezenas, 3, 0, str);
-		// printf(str);
-		PORTK = 0b00000100;
-		code_numeros(dezenas,0);
-		_delay_ms(2);
-		// dtostrf(unidades, 3, 0, str);
-		// printf(str);
-		// printf("\n\r");
-		PORTK = 0b00000010;
-		code_numeros(unidades,1);
-		_delay_ms(2);
-		PORTK = 0b00000001;
-		code_numeros(centezimas,0);
-		//_delay_ms(1.5);
-		
-
+		code_numeros(centenas,dezenas,unidades,centezimas,de);
 	}
 
 	void Controle(void)
@@ -276,6 +268,7 @@
 			{
 				ang = ang-5;
 				servo.write(ang);
+				
 			}
 		}
 		else if (!(PINB & (1 << PINB0)))
@@ -283,13 +276,23 @@
 				//printf("Ola");
 				ang = ang-5;
 				servo.write(ang);
-				_delay_ms(100);
+				_delay_ms(105);
 		}
 		else if (!(PINB & (1 << PINB1)))
 		{
 				ang = ang+5;
 				servo.write(ang);
+				_delay_ms(105);
+		}
+		else if(!(PINB & (1 << PINB2)))
+		{
+				frist_time=1;
+				ON_AG();
+				GA_ON=1;
+				_delay_ms(10);
+				Equi_ON=1;
 				_delay_ms(100);
+				ang_cent=ang;
 		}
 		else
 		{
@@ -325,6 +328,7 @@
 		char floatBuffer[20];
 		char printBuffer[80];
 		int atual_ang =0;
+		
 
 		stdout=&mystdout;
 		init_adc();
@@ -335,17 +339,16 @@
 		// DDRB = (1 << DDB5);
 		// PORTB=(1<<PB5);
 		// DDRF = 0b00000000;
-		DDRB &= ~(1<<DDB1 |1<<DDB0);
+		DDRB &= ~(1<<DDB0 |1<<DDB1 | 1<<DDB2);
 		DDRF = 0b11111111;
 		DDRK = 0b00001111;
 		/* ADC cfg */
 		sei();							  /* enable interrupts */
 
 		Manuel();
-		PORTK = 0b00001111;
-		code_numeros(0,0);
+		
+		//Show_val(ang);
 		//_delay_ms(1000);
-
 		while(1) 
 		{	
 			Controle();
@@ -360,6 +363,7 @@
 			}
 			else if ( GA_ON == 1 )
 			{
+				//ang_cent=ang;
 				Wire.beginTransmission(MPU_ADDR);
 				Wire.write(0x3B);
 				Wire.endTransmission(false);
@@ -389,22 +393,18 @@
 				if (Equi_ON == 1)
 				{
 					atual_ang = (int)accAngleX+ang;
+					ang_cent=ang;
 					if (abs(atual_ang-show_ang) > 3)
 					{
 						show_ang = atual_ang;
-						DONT = 0;
+						DONT=0;
 					}
 					else
 					{
-						DONT = 1;
+						DONT=1;
 					}
-					
-					for (size_t i = 0; i < 10; i++)
-					{
-						_delay_ms(20);
-						Show_val(show_ang);
-						_delay_ms(5);
-					}
+					Show_val(show_ang,delay_me);
+					_delay_ms(5);
 					
 					
 					//printf("Aqui ok mesmo\n\r");
@@ -414,38 +414,44 @@
 					// 	servo.write(atual_ang);
 					// }
 					servo.detach();
-					if (atual_ang<70)
+					if (atual_ang<(ang_cent-5))
 					{
 						servo.attach(servoPin);	
 						printf("2\n\r");
-						for(servoAngle = 180-atual_ang; servoAngle > 90; servoAngle--)  //move the micro servo from 0 degrees to 180 degrees
+						for(servoAngle = atual_ang; servoAngle < ang_cent+15; servoAngle++)  //move the micro servo from 0 degrees to 180 degrees
 						{           
 									
 							servo.write(servoAngle); 
 							// dtostrf(servoAngle, 3, 0, str);  
 							// printf(str);  
-							Show_val(atual_ang);        
+							Show_val(atual_ang,delay_me);        
 							_delay_ms(5);                
 						}
 					}
-					else if (atual_ang>110)
+					else if (atual_ang>(ang_cent+5))
 					{
 						servo.attach(servoPin);
 						printf("3\n\r");
-						for(servoAngle = 180-atual_ang; servoAngle < 90; servoAngle++)  //move the micro servo from 0 degrees to 180 degrees
+						for(servoAngle = atual_ang; servoAngle > ang_cent-10; servoAngle--)  //move the micro servo from 0 degrees to 180 degrees
 						{           
 												
 							servo.write(servoAngle); 
 							// dtostrf(servoAngle, 3, 0, str);  
 							// printf(str);
-							Show_val(atual_ang);          
+							Show_val(atual_ang,delay_me);          
 							_delay_ms(5);                
 						}
 					}
 				}
+				
+				
 			}
+			else
+				{
+					Show_val(ang,delay_me);
+				}
 			clear_buffer();
-			_delay_ms(20);
+			//_delay_ms(20);
 			
 		
 		}
@@ -568,4 +574,169 @@ void loop()
 //   }
   //end control the servo's speed  
 }
+#endif
+
+#ifdef __Main_4
+/* PID balance code with ping pong ball and distance sensor sharp 2y0a21
+ *  by ELECTRONOOBS: https://www.youtube.com/channel/UCjiVhIvGmRZixSzupD0sS9Q
+ *  Tutorial: http://electronoobs.com/eng_arduino_tut100.php
+ *  Code: http://electronoobs.com/eng_arduino_tut100_code1.php
+ *  Scheamtic: http://electronoobs.com/eng_arduino_tut100_sch1.php 
+ *  3D parts: http://electronoobs.com/eng_arduino_tut100_stl1.php   
+ */
+#include <Wire.h>
+#include <Servo.h>
+
+
+
+///////////////////////Inputs/outputs///////////////////////
+int Analog_in = A0;
+Servo myservo;  // create servo object to control a servo, later attatched to D9
+///////////////////////////////////////////////////////
+
+
+////////////////////////Variables///////////////////////
+int Read = 0;
+float distance = 0.0;
+float elapsedTime, time, timePrev;        //Variables for time control
+float distance_previous_error, distance_error;
+int period = 50;  //Refresh rate period of the loop is 50ms
+///////////////////////////////////////////////////////
+
+
+///////////////////PID constants///////////////////////
+float kp=8; //Mine was 8
+float ki=0.2; //Mine was 0.2
+float kd=3100; //Mine was 3100
+float distance_setpoint = 21;           //Should be the distance from sensor to the middle of the bar in mm
+float PID_p, PID_i, PID_d, PID_total;
+///////////////////////////////////////////////////////
+
+
+float get_dist(int n)
+{
+  long sum=0;
+  for(int i=0;i<n;i++)
+  {
+    sum=sum+analogRead(Analog_in);
+  }  
+  float adc=sum/n;
+  //float volts = analogRead(adc)*0.0048828125;  // value from sensor * (5/1024)
+  //float volts = sum*0.003222656;  // value from sensor * (3.3/1024) EXTERNAL analog refference
+
+  float distance_cm = 17569.7 * pow(adc, -1.2062);
+  //float distance_cm = 13*pow(volts, -1); 
+  return(distance_cm);
+}
+
+
+int main()
+{
+  //analogReference(EXTERNAL);
+  Serial.begin(9600);  
+  myservo.attach(10);  // attaches the servo on pin 9 to the servo object
+  myservo.write(90); //Put the servco at angle 125, so the balance is in the middle
+  pinMode(Analog_in,INPUT);  
+  time = millis();
+
+
+
+  if (millis() > time+period)
+  {
+    time = millis();    
+    distance = get_dist(100);   
+    distance_error = distance_setpoint - distance;   
+    PID_p = kp * distance_error;
+    float dist_diference = distance_error - distance_previous_error;     
+    PID_d = kd*((distance_error - distance_previous_error)/period);
+      
+    if(-3 < distance_error && distance_error < 3)
+    {
+      PID_i = PID_i + (ki * distance_error);
+    }
+    else
+    {
+      PID_i = 0;
+    }
+  
+    PID_total = PID_p + PID_i + PID_d;  
+    PID_total = map(PID_total, -150, 150, 0, 150);
+  
+    if(PID_total < 20){PID_total = 20;}
+    if(PID_total > 160) {PID_total = 160; } 
+  
+    myservo.write(PID_total+30);  
+    distance_previous_error = distance_error;
+  }
+}
+#endif
+
+#ifdef __Main_5 
+
+#include<Servo.h>
+#include<PID_v1.h>
+
+const int servoPin = 10;                                               //Servo Pin
+ 
+float Kp = 5.5;                                                    //Initial Proportional Gain
+float Ki = 0.1;                                                      //Initial Integral Gain
+float Kd = 0.5;                                                    //Intitial Derivative Gain
+double Setpoint, Input, Output, ServoOutput;                                       
+
+PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);           //Initialize PID object, which is in the class PID.
+                                                                     
+Servo myServo;                                                       //Initialize Servo.
+const int echoPin = 4;
+const int trigPin = 7;
+
+float readPosition() {
+  delay(30);                                                           
+ 
+long duration, cm;
+unsigned long now = millis();
+ digitalWrite(trigPin, LOW);  // Added this line
+  delayMicroseconds(2); // Added this line
+  digitalWrite(trigPin, HIGH);
+ 
+  delayMicroseconds(10); // Added this line
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH);
+
+  cm = duration*46/(10000);
+ 
+  if(cm > 12)     // 35 cm is the maximum position for the ball
+  {cm=12;}
+ 
+  Serial.println(duration);
+ 
+  return cm;                                          //Returns distance value.
+}
+
+void setup() {
+
+  Serial.begin(9600);      //Begin Serial
+   pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  myServo.attach(servoPin);                                          //Attach Servo
+
+  Input = readPosition();                                            //Calls function readPosition() and sets the balls
+                                                                     //  position as the input to the PID algorithm
+                                                                     
+  myPID.SetMode(AUTOMATIC);                                          //Set PID object myPID to AUTOMATIC
+  myPID.SetOutputLimits(-60,60);                                     //Set Output limits to -80 and 80 degrees.
+}
+
+void loop()
+{
+ 
+  Setpoint = 8;
+  Input = readPosition();                                           
+ 
+  myPID.Compute();                                                   //computes Output in range of -80 to 80 degrees
+  ServoOutput=100+Output;                                            // 150 degrees is my horizontal
+  //Serial.println(Output);
+  myServo.write(ServoOutput);                                        //Writes value of Output to servo 
+}
+
+
 #endif

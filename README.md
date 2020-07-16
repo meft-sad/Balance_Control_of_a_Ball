@@ -32,4 +32,3 @@ To work with this type of diplay its needed to send to the HDSPBOxE 12 outs so f
 # Test of the code 
 
 ![Alt Text](/Tables_Imag/test.gif)
-<img src="/Tables_Imag/test.gif" width="1200" height="250" />

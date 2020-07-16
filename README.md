@@ -1,6 +1,6 @@
 # Balance Fontol of a Ball
 
-##### By: Pedro Rossa
+###### By: Pedro Rossa
 
 ## Introduction
 

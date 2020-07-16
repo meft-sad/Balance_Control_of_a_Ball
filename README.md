@@ -28,3 +28,7 @@ The sensors used in this project and corresponding datasheet are:
 To work with this type of diplay its needed to send to the HDSPBOxE 12 outs so for that purpose was created the following table to help control the display:
 
 ![tabella](https://github.com/meft-sad/Balance_Control_of_a_Ball/blob/master/Tables_Imag/7_S_D.png)
+
+# Test of the code 
+
+[![Demo CountPages alpha](https://share.gifyoutube.com/KzB6Gb.gif)](https://www.youtube.com/watch?v=ek1j272iAmc)

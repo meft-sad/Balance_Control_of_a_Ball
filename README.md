@@ -5,7 +5,8 @@
 ## Introduction
 
 This project aim is to
-##Components of the project
+
+## Components of the project
 In this section are the list of all componets used to do this project and the corresponding datasheet.
 ### Microcontroller
 [Arduino MEGA 2560](https://ww1.microchip.com/downloads/en/devicedoc/atmel-2549-8-bit-avr-microcontroller-atmega640-1280-1281-2560-2561_datasheet.pdf);

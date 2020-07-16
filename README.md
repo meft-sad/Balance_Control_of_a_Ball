@@ -31,6 +31,8 @@ To work with this type of diplay its needed to send to the HDSPBOxE 12 outs so f
 
 # Test of the code 
 
-<video width="480" height="320" controls="controls">
-  <source src="Tables_Imag/Test.mp4" type="video/mp4">
-</video>
+<figure class="video_container">
+  <video controls="true" allowfullscreen="true" poster="path/to/poster_image.png">
+    <source src="https://github.com/meft-sad/Balance_Control_of_a_Ball/blob/master/Tables_Imag/Test.mp4" type="video/mp4">
+      </video>
+</figure>

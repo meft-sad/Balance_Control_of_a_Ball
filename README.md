@@ -1,4 +1,4 @@
-#Balance Fontol of a Ball
+# Balance Fontol of a Ball
 
 ##### By: Pedro Rossa
 

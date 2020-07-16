@@ -30,5 +30,5 @@ To work with this type of diplay its needed to send to the HDSPBOxE 12 outs so f
 ![tabella](Tables_Imag/7_S_D.png)
 
 # Test of the code 
-
+In the following gif is showing one of the test done of the machine working and as you can see the objective of balance a ball and keep it in the middle is achieved.
 ![Alt Text](/Tables_Imag/test.gif)

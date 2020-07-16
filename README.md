@@ -34,6 +34,7 @@ To work with this type of diplay its needed to send to the HDSPBOxE 12 outs so f
 
 ![tabella](Tables_Imag/7_S_D.png)
 And after that using the ABC... scheme showed above it was code the bit of the prots PF0 to PF7 to write the numbers:
+
 ![tabella](Tables_Imag/Code_numb.png)
 
 # Test of the code 

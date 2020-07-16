@@ -31,5 +31,5 @@ To work with this type of diplay its needed to send to the HDSPBOxE 12 outs so f
 
 # Test of the code 
 
-![Alt Text](https://j.gifs.com/ZYBGo5.gif)
+![Alt Text](https://github.com/meft-sad/Balance_Control_of_a_Ball/blob/master/Tables_Imag/test.gif)
 <img src="https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif" width="40" height="40" />

@@ -28,6 +28,8 @@ The sensors used in this project and corresponding datasheet are:
 To work with this type of diplay its needed to send to the HDSPBOxE 12 outs so for that purpose was created the following table to help control the display:
 
 ![tabella](Tables_Imag/7_S_D.png)
+And after that using the ABC... scheme showed above it was code the bit of the prots PF0 to PF7 to write the numbers:
+![tabella](Tables_Imag/Code_numb.png)
 
 # Test of the code 
 In the following gif is showing one of the test done of the machine working and as you can see the objective of balance a ball and keep it in the middle is achieved.

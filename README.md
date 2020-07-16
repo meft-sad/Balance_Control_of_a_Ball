@@ -1,17 +1,17 @@
 #Balance Fontol of a Ball
 
-#####By: Pedro Rossa 
+##### By: Pedro Rossa
 
-##Introduction
+## Introduction
 
-This project aim is to 
+This project aim is to
 ##Components of the project
 In this section are the list of all componets used to do this project and the corresponding datasheet.
-###Microcontroller
+### Microcontroller
 [Arduino MEGA 2560](https://ww1.microchip.com/downloads/en/devicedoc/atmel-2549-8-bit-avr-microcontroller-atmega640-1280-1281-2560-2561_datasheet.pdf);
-###Inputs 
+### Inputs 
 Buttons;
-###Outputs
+### Outputs
 [HDSP-B0xE](http://www.farnell.com/datasheets/2095876.pdf) :  Four digit seven segment display;
 
 
@@ -22,7 +22,7 @@ The sensors used in this project and corresponding datasheet are:
 * [MPU-6000A](https://cdn.sparkfun.com/datasheets/Sensors/Accelerometers/RM-MPU-6000A.pdf) : Accelerometer and gyroscope module 3 axes.
 
 
-##[HDSP-B0xE](http://www.farnell.com/datasheets/2095876.pdf) :  Four digit seven segment display
+## [HDSP-B0xE](http://www.farnell.com/datasheets/2095876.pdf) :  Four digit seven segment display
 
 To work with this type of diplay its needed to send to the HDSPBOxE 12 outs so for that purpose was created the following table to help control the display:
 

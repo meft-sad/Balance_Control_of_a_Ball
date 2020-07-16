@@ -1,6 +1,9 @@
 #Balance Fontol of a Ball
+
 #####By: Pedro Rossa 
+
 ##Introduction
+
 This project aim is to 
 ##Components of the project
 In this section are the list of all componets used to do this project and the corresponding datasheet.

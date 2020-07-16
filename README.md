@@ -31,4 +31,4 @@ To work with this type of diplay its needed to send to the HDSPBOxE 12 outs so f
 
 # Test of the code 
 
-[![Demo CountPages alpha](https://j.gifs.com/q70pX7.gif)](https://youtu.be/v1be9qwYQ1Q)
+[![Demo](https://j.gifs.com/q70pX7.gif)](https://youtu.be/v1be9qwYQ1Q)

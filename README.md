@@ -4,8 +4,12 @@
 
 ## Introduction
 
-The objective of this project is to balance a ball on a platform (1D movement) with the use of an Arduino MEGA 2560, a servo motor, sonar and some buttons to facilitate the adjuste in the begining of the operation, saving data and stop and start the machine. 
+The objective of this project is to balance a ball on a platform (1D movement) and if the ball is moved to a different position which is not the middle of the board the machine should return it to the middle.
+
+To do this was used an Arduino MEGA 2560, a servo motor, sonar and some buttons to facilitate the adjuste in the begining of the operation, saving data and stop and start the machine.
+
 It is possible to see the angulo that the platform is doing in run time due to a 4 digit 7 segement LED display.
+
 
 ## Components of the project
 In this section are the list of all componets used to do this project and the corresponding datasheet.

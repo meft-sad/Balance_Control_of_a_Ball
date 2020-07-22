@@ -34,6 +34,8 @@ So in order to measure the position of the ball in the platform it was used the 
 
 The sonar HC-SR04 have 4 pins: Vcc, Trigger, Echo, Ground. So to put it working is needed to conect 5V to Vcc and ground to the Ground pin, to the Trigger it must supplied a short 10uS pulse to start the ranging and wait 60 ms so the wave has time to travel back to the sensor before sending another pulse, and then the module will send out an 8 cycle burst of ultrasound at 40 kHz. 
 
+![image](Tables_Imag/Timer_4_ISR.png)
+
 For the Echo pin it should be conect to a input pin of the microcontroller because in this pin after the wave is reflect on the balll the Echo pin goes high for a particular amount of time which will be equal to the time taken for the wave to return back to the sensor. So in the microcontroller it will be use a Input Capture Mode.
 
 #### Input Capture Mode

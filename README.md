@@ -56,7 +56,7 @@ distance = (durantion * speed_sound)/2
 
 So the speed of sound if 340 m/s to convert it to units that are used on the Arduino such as microsecond the speed of sound is equal to 0.0340 [cm/us] (29 [us/cm]) and since we are using the timer 4 with no prescaler the durantion needs to be converted to microseconds, so durantion*1/16 [us] so the final calculation is:
 
-distance[cm] = durantion/(29*2*16) = durantion/928
+distance[cm] = durantion/(29 * 2 * 16) = durantion/928
 
 
 ### [MG90S](https://www.electronicoscaldas.com/datasheet/MG90S_Tower-Pro.pdf) : Servo motor metal gear

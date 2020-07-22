@@ -4,12 +4,13 @@
 
 ## Introduction
 
-This project aim is to
+The objective of this project is to balance a ball on a platform (1D movement) with the use of an Arduino MEGA 2560, a servo motor, sonar and some buttons to facilitate the adjuste in the begining of the operation, saving data and stop and start the machine. 
+It is possible to see the angulo that the platform is doing in run time due to a 4 digit 7 segement LED display.
 
 ## Components of the project
 In this section are the list of all componets used to do this project and the corresponding datasheet.
 ### Microcontroller
-[Arduino MEGA 2560](https://ww1.microchip.com/downloads/en/devicedoc/atmel-2549-8-bit-avr-microcontroller-atmega640-1280-1281-2560-2561_datasheet.pdf)[(Scheme)](https://github.com/meft-sad/Balance_Control_of_a_Ball/blob/master/Manuals/Arduino_mega.png);
+[Arduino MEGA 2560](https://ww1.microchip.com/downloads/en/devicedoc/atmel-2549-8-bit-avr-microcontroller-atmega640-1280-1281-2560-2561_datasheet.pdf) [(Scheme)](https://github.com/meft-sad/Balance_Control_of_a_Ball/blob/master/Manuals/Arduino_mega.png);
 ### Inputs 
 Buttons;
 ### Outputs

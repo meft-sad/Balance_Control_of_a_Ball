@@ -34,7 +34,6 @@ So in order to measure the position of the ball in the platform it was used the 
 
 The sonar HC-SR04 have 4 pins: Vcc, Trigger, Echo, Ground. So to put it working is needed to conect 5V to Vcc and ground to the Ground pin, to the Trigger it must supplied a short 10uS pulse to start the ranging and wait 60 ms so the wave has time to travel back to the sensor before sending another pulse, and then the module will send out an 8 cycle burst of ultrasound at 40 kHz. 
 
-![image](Tables_Imag/Timer_4_ISR.png)
 
 For the Echo pin it should be conect to a input pin of the microcontroller because in this pin after the wave is reflect on the balll the Echo pin goes high for a particular amount of time which will be equal to the time taken for the wave to return back to the sensor. So in the microcontroller it will be use a Input Capture Mode.
 
@@ -43,6 +42,8 @@ For the Echo pin it should be conect to a input pin of the microcontroller becau
 It was used the Timer 4 of the Arduino Mega 2560 wich is a 16-bits timer and it was seted with the mode Input Capture so this timer is able to capture external evets and give the time at they ocurre. So in this in maind it was conected the Echo of the sonar to the Pin 49 (PL0) of the Arduino, that pin corresponds to the Interupt of timer 4 (ICP4).
 
 Iniciality the Input Capture is sensitive to rising flank because is  expected the beiging of the reflect wave them the time of the ICR4 is saved in a variable (in this cases T1) and them the sensite mode is changed to falling flank waint to the wave ends and again saving the time in a variable (T2), so by doing T2-T1 we would expect the time of the the wave traveling to the object them beiging reflected and arraivng to the Echo but the timer could have overflowed bettewen the measurements so it was had a overflow interupction that corrects for this was you can see in the following piece of code.
+
+![image](Tables_Imag/Timer_4_ISR.png)
 
 So the time is given by "T2-T1+65535*s_over" where s_over is all the time 0 but if a overfall occurs between T1 and T2 it's going to be 1.
 

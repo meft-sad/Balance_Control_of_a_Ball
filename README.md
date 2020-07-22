@@ -44,7 +44,7 @@ It was used the Timer 4 of the Arduino Mega 2560 wich is a 16-bits timer and it 
 
 Iniciality the Input Capture is sensitive to rising flank because is  expected the beiging of the reflect wave them the time of the ICR4 is saved in a variable (in this cases T1) and them the sensite mode is changed to falling flank waint to the wave ends and again saving the time in a variable (T2), so by doing T2-T1 we would expect the time of the the wave traveling to the object them beiging reflected and arraivng to the Echo but the timer could have overflowed bettewen the measurements so it was had a overflow interupction that corrects for this was you can see in the following piece of code.
 
-![tabella](Tables_Imag/Timer_4_ISR.png)
+![tabella](Tables_Imag/Timer_4_ISR_2.png)
 
 So the time is given by "T2-T1+65535*s_over" where s_over is all the time 0 but if a overfall occurs between T1 and T2 it's going to be 1.
 

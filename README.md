@@ -80,3 +80,4 @@ In the following gif is showing one of the test done of the machine working and 
 ![Alt Text](/Tables_Imag/test.gif)
 
 # Analise of Data
+

@@ -61,6 +61,9 @@ distance[cm] = durantion/(29 * 2 * 16) = durantion/928
 
 ### [MG90S](https://www.electronicoscaldas.com/datasheet/MG90S_Tower-Pro.pdf) : Servo motor metal gear
 
+
+
+
 ### [MPU-6000A](https://cdn.sparkfun.com/datasheets/Sensors/Accelerometers/MPU-6050.pdf) : Accelerometer and gyroscope module 3 axes
 
 ### [HDSP-B0xE](http://www.farnell.com/datasheets/2095876.pdf) :  Four digit seven segment display
@@ -71,7 +74,9 @@ To work with this type of diplay its needed to send to the HDSPBOxE 12 outs so f
 And after that using the ABC... scheme showed above it was code the bit of the prots PF0 to PF7 to write the numbers:
 
 ![tabella](Tables_Imag/Code_numb.png)
-
+# PID
 # Test of the code 
 In the following gif is showing one of the test done of the machine working and as you can see the objective of balance a ball and keep it in the middle is achieved.
 ![Alt Text](/Tables_Imag/test.gif)
+
+# Analise of Data

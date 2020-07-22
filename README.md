@@ -46,7 +46,18 @@ Iniciality the Input Capture is sensitive to rising flank because is  expected t
 
 ![tabella](Tables_Imag/Timer_4_ISR_2.png)
 
-So the time is given by "T2-T1+65535*s_over" where s_over is all the time 0 but if a overfall occurs between T1 and T2 it's going to be 1.
+So the time is given by "durantion = T2-T1+65535*s_over" where s_over is all the time 0 but if a overfall occurs between T1 and T2 it's going to be 1.
+
+#### Calculation of distance
+
+So to get the distance we need to multiply the time that the wave travel by the speed of sound in the ar and divid it by 2 because the wave travels the double of the distance where the ball is, so:
+
+distance = (durantion * speed_sound)/2
+
+So the speed of sound if 340 m/s to convert it to units that are used on the Arduino such as microsecond the speed of sound is equal to 0.0340 [cm/us] (29 [us/cm]) and since we are using the timer 4 with no prescaler the durantion needs to be converted to microseconds, so durantion*1/16 [us] so the final calculation is:
+
+distance[cm] = durantion/(29*2*16) = durantion/928
+
 
 ### [MG90S](https://www.electronicoscaldas.com/datasheet/MG90S_Tower-Pro.pdf) : Servo motor metal gear
 

@@ -101,10 +101,13 @@ The pin of Vcc sould be conect to 4.8-6 V, in this machine has used 5 V. The gro
 
 For this parte of the project it was used the libery of arduino Servo because is more complecated than I thought at the beginning, the problem I think that I'm having on my fuction to move the servo is that I'm not waint the time that the servo needs to move to the desired position. This information was not in the datasheet, I only found this information when searching for a soluction to my problem and found this:
 
-<img src="Tables_Imag/Problem.png" width="500">
+<img src="Tables_Imag/Problem.png" width="450">
 
+This was found a bit to late bu with this information the I could correct the code I had to move the servo with out the Servo library.
 
 ### [MPU-6050](https://cdn.sparkfun.com/datasheets/Sensors/Accelerometers/MPU-6050.pdf) : Accelerometer and gyroscope module 3 axes
+
+
 
 ### [HDSP-B0xE](http://www.farnell.com/datasheets/2095876.pdf) :  Four digit seven segment display
 

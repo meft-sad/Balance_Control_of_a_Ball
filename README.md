@@ -64,9 +64,26 @@ distance[cm] = durantion/(29 * 2 * 16) = durantion/928
 
 ### [SG90](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf) : Servo motor 
 
+In the work the servo motor is used to move the platform. So the frist thing is importante to do is estimate the torque needed to move the platform and get a motor with that or higher torque.
+
+To calculate the torque that the motor need to do in a rest position was puted a weight in diferents positions until the platform reach the balance:
 
 
+<img src="Tables_Imag/visão_cima_troque_escala.png" width="3000">
 
+And by measure the wight of the wooden block, which is approximately 7g,
+<img src="Tables_Imag/massas_bola_troque.png" width="3000">
+is possible to calculate the torque by:
+
+T~rest~ = W x g x d
+
+where W is the weight, g the gravitational acceleration constant (9.81 m/s^2^) and d is the distance of the wodden block to the centre of equilibrion.
+The result is 5.4936x10^-3^ N.m, by cheking in the datasheet the sevo motor SG90 was a torque of 2.5 Kg-cm this mean that the motor will stall when a weight of 2.5 Kg is hanging from a 1 cm long arm that is attached to the motor spendle,
+<img src="Tables_Imag/Motor_escala.png" width="350">
+
+was you can see in the image aboce the armor of the motor is 3 cm so the maximo weigth that the motor can handle is about 0.833 Kg and for the imgage bellow we can see that this motor is about 17.5 cm form the centro of equilibrion of the platform do the wight that the motor will feel when atach to the plaform is 3.29x10^-3^ Kg that corresponds a form point up of 3.23x10^-2^ N.
+
+<img src="Tables_Imag/Tabua_graduada.png" width="170">
 
 
 ### [MPU-6050](https://cdn.sparkfun.com/datasheets/Sensors/Accelerometers/MPU-6050.pdf) : Accelerometer and gyroscope module 3 axes

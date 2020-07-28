@@ -89,6 +89,10 @@ When the ball is on the platform the torque maximo that the motor will fell poin
 On other hand the maximo torque pointing up is about 0.718 N.m  so the maximo wight the motor will eel is about 0.081 Kg.
 In conclusion the servo SG90 is more them enough to make the machine work.
 
+#### How SG90 works
+
+The SG90 is a servo motor with 3 pin, Vcc, Ground and signal(PWM).
+The pin of Vcc sould be conect to 4.8-6 V, in this machine has used 5 V. The ground pin has conected to the ground of the board, and the signal pin need to be 
 
 
 ### [MPU-6050](https://cdn.sparkfun.com/datasheets/Sensors/Accelerometers/MPU-6050.pdf) : Accelerometer and gyroscope module 3 axes

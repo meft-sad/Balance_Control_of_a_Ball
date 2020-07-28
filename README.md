@@ -75,7 +75,7 @@ And by measure the wight of the wooden block, which is approximately 7g,
 <img src="Tables_Imag/massas_bola_troque.png" width="3000">
 is possible to calculate the torque by:
 
-T~rest~ = W x g x d
+T<sub>rest</sub> = W x g x d
 
 where W is the weight, g the gravitational acceleration constant (9.81 m/s^2^) and d is the distance of the wodden block to the centre of equilibrion.
 The result is 5.4936x10^-3^ N.m, by cheking in the datasheet the sevo motor SG90 was a torque of 2.5 Kg-cm this mean that the motor will stall when a weight of 2.5 Kg is hanging from a 1 cm long arm that is attached to the motor spendle,

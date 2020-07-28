@@ -108,7 +108,6 @@ This was found a bit to late bu with this information the I could correct the co
 ### [MPU-6050](https://cdn.sparkfun.com/datasheets/Sensors/Accelerometers/MPU-6050.pdf) : Accelerometer and gyroscope module 3 axes
 
 
-
 ### [HDSP-B0xE](http://www.farnell.com/datasheets/2095876.pdf) :  Four digit seven segment display
 
 To work with this type of display it is needed to send to the HDSPBOxE 12 outs so for that purpose was created the following table to help control the display:
@@ -118,7 +117,15 @@ And after that using the ABC... scheme showed above it was code the bit of the p
 
 ![tabella](Tables_Imag/Code_numb.png)
 # PID
-# Test of the code 
+
+A proportional–integral–derivative controller or PID for short. A PID controller continuously calculates an error value as the difference between a desired setpoint (SP),  in this case is the posicion that we want the ball, and a measured process variable (PV) and applies a correction based on proportional, integral, and derivative terms (denoted P, I, and D respectively), hence the name.
+<img src="Tables_Imag/PID.png" width="450">
+
+In this cse the PV is given by the sonar and with the following piece of code is calculated the angul that the servo motor as to do base on the result of the PID, as you can see on the following piece of code:
+
+<img src="Tables_Imag/PID_1.png" width="450">
+
+# Test of the code
 In the following gif is showing one of the test done of the machine working and as you can see the objective of balance a ball and keep it in the middle is achieved.
 ![Alt Text](/Tables_Imag/test.gif)
 

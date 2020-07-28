@@ -32,6 +32,7 @@ int distance_previous_error;
 uint8_t rx_pointer;
 uint8_t ind;
 uint8_t received = 0;
+int distance;
 
 
 const int servoPin = 10;                                               //Servo Pin
@@ -177,37 +178,55 @@ float readPosition(float duration)
 	FT = 0;
 	return cm;                                          //Returns distance value.
 }
-int distance;
+
+
 int PID_Compute()
 {
 	int distance_error;
 	
 	if (millis() > time+period)
-  {
-    time = millis();    
-    distance =readPosition((T2-T1));  
-    distance_error = Setpoint - distance;   
-    PID_p = Kp * distance_error;
-    //float dist_diference = distance_error - distance_previous_error;     
-    PID_d = Kd*((distance_error - distance_previous_error)/period);
-      
-    if(-3 < distance_error && distance_error < 3)
-    {
-      PID_i = PID_i + (Ki * distance_error);
-    }
-    else
-    {
-      PID_i = 0;
-    }
+  	{
+    	time = millis();   
+
+    	distance = readPosition((T2-T1));  
+
+		// Calculation of the erro
+    	distance_error = Setpoint - distance; 
+
+		// Calculation of the P 
+    	PID_p = Kp * distance_error; 	
+
+    	// Calculation of the P  
+   		PID_d = Kd*(double)((double)distance_error - distance_previous_error)/period); 
+	
+		// Calulation of the I  
+    	if(-1 < distance_error && distance_error < 1)
+    	{
+      		PID_i = PID_i + (Ki * distance_error);
+   		}
+    	else // if the ball is in 27 cm or 26 cm range the integral parte stops
+    	{
+      		PID_i = 0;
+    	}
   
-    PID_total = PID_p + PID_i + PID_d;  
-    PID_total = map(PID_total, -150, 150, 0, 180);
-  
-    if(PID_total < 30){PID_total = 30;}
-    if(PID_total > 150) {PID_total = 150; } 
-	distance_previous_error=distance_error;
-	return PID_total;
-	}
+    	PID_total = PID_p + PID_i + PID_d; 
+
+		// Maping the value of the PID to a range of angles
+    	PID_total = map(PID_total, -150, 150, 0, 180);
+
+		// Limiting the angles because in the setup the servo can not go to lower angles them 30º,
+    	if(PID_total < 30)
+		{
+			PID_total = 30;
+		}
+		// same as higher them 150º otherwise it will get stuck
+    	if(PID_total > 150) 
+		{
+			PID_total = 150; 
+		} 
+		distance_previous_error=distance_error;
+		return PID_total;
+		}
 }
 
 

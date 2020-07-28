@@ -41,7 +41,7 @@ The Echo pin it should be connect to an input pin of the microcontroller, becaus
 It was used the Timer 4 of the Arduino Mega 2560 wich is a 16-bits timer and it was configured with the mode Input Capture, so this timer is able to capture external evets and give the time at they ocur. With this in mind it was connected the Echo of the sonar to the Pin 49 (PL0) of the Arduino, that pin corresponds to
 the Interrupt of timer 4 (ICP4).
 
-![image](Tables_Imag/Sonar.jpg)
+<img src="Tables_Imag/Sonar_image.jpg" width="800">
 
 
 Initially the Input Capture is sensitive to rising flank because is expected the beam of the reflect wave. Then the time of the ICR4 is saved in a variable (in this cases T1) and then the sensing mode is changed to falling flank waiting for to the wave ends and again saving the time in a variable (T2). By doing T2-T1 we would expect the time of the wave traveling to the object them being reflected and arriving to the Echo but the timer could have overflowed between the measurements. To overcame this problem, it was added an overflow interruption that corrects for this, as you can see in the following piece of code.

@@ -123,7 +123,7 @@ A proportional–integral–derivative controller or PID for short. A PID contro
 
 In this cse the PV is given by the sonar and with the following piece of code is calculated the angul that the servo motor as to do base on the result of the PID, as you can see on the following piece of code:
 
-<img src="Tables_Imag/PID_1.png" width="800">
+<img src="Tables_Imag/PID_1.png" width="600">
 
 # Test of the code
 In the following gif is showing one of the test done of the machine working and as you can see the objective of balance a ball and keep it in the middle is achieved.

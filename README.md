@@ -72,12 +72,15 @@ To calculate the torque that the motor need to do in a rest position was puted a
 <img src="Tables_Imag/visão_cima_troque_escala.png" width="3000">
 
 And by measure the wight of the wooden block, which is approximately 7g,
+
 <img src="Tables_Imag/massas_bola_troque.png" width="3000">
+
 is possible to calculate the torque by:
 
 T<sub>rest</sub> = W x g x d
 
 where W is the weight, g the gravitational acceleration constant (9.81 m/s^2^) and d is the distance of the wodden block to the centre of equilibrion.
+
 The result is 5.4936x10^-3^ N.m, by cheking in the datasheet the sevo motor SG90 was a torque of 2.5 Kg-cm this mean that the motor will stall when a weight of 2.5 Kg is hanging from a 1 cm long arm that is attached to the motor spendle,
 <img src="Tables_Imag/Motor_escala.png" width="350">
 
@@ -86,13 +89,19 @@ was you can see in the image aboce the armor of the motor is 3 cm so the maximo 
 <img src="Tables_Imag/Tabua_graduada.png" width="170">
 
 When the ball is on the platform the torque maximo that the motor will fell pointing down is about 0.0608 N.m, that mean that weight the motor will feel is about 0.0608/((26-17)x10^-2^x9.81)=0.069 Kg. 
+
 On other hand the maximo torque pointing up is about 0.718 N.m  so the maximo wight the motor will eel is about 0.081 Kg.
 In conclusion the servo SG90 is more them enough to make the machine work.
 
 #### How SG90 works
 
 The SG90 is a servo motor with 3 pin, Vcc, Ground and signal(PWM).
-The pin of Vcc sould be conect to 4.8-6 V, in this machine has used 5 V. The ground pin has conected to the ground of the board, and the signal pin need to be 
+
+The pin of Vcc sould be conect to 4.8-6 V, in this machine has used 5 V. The ground pin has conected to the ground of the board, and the signal pin need to be supplied a pulse in between 1ms and 2 ms(some manufacturers say 0.5ms and 2.5ms), sould be a period of waiting of 20 ms for the injection of the next pulse. The pulse of 1 ms corresponds to -90º and the 2 ms to 90º so to ache a precision of 1º the pelse have to have a precision of 0.01 ms.
+
+For this parte of the project it was used the libery of arduino Servo because is more complecated than I thought at the beginning, the problem I think that I'm having on my fuction to move the servo is that I'm not waint the time that the servo needs to move to the desired position. This information was not in the datasheet, I only found this information when searching for a soluction to my problem and found this:
+
+<img src="Tables_Imag/Problem.png" width="500">
 
 
 ### [MPU-6050](https://cdn.sparkfun.com/datasheets/Sensors/Accelerometers/MPU-6050.pdf) : Accelerometer and gyroscope module 3 axes

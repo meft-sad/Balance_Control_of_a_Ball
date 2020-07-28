@@ -119,6 +119,7 @@ And after that using the ABC... scheme showed above it was code the bit of the p
 # PID
 
 A proportional–integral–derivative controller or PID for short. A PID controller continuously calculates an error value as the difference between a desired setpoint (SP),  in this case is the posicion that we want the ball, and a measured process variable (PV) and applies a correction based on proportional, integral, and derivative terms (denoted P, I, and D respectively), hence the name.
+
 <img src="Tables_Imag/PID.png" width="450">
 
 In this cse the PV is given by the sonar and with the following piece of code is calculated the angul that the servo motor as to do base on the result of the PID, as you can see on the following piece of code:

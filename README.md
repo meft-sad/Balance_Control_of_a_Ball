@@ -23,7 +23,7 @@ Buttons;
 ### Sensors
 The sensors used in this project and corresponding datasheet are:
 * [HC-SR04](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf) : Sonar to measure distances;
-* [MG90S](https://www.electronicoscaldas.com/datasheet/MG90S_Tower-Pro.pdf) : Servo motor metal gear;
+* [SG90](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf) : Servo motor;
 * [MPU-6050](https://cdn.sparkfun.com/datasheets/Sensors/Accelerometers/MPU-6050.pdf) : Accelerometer and gyroscope module 3 axes.
 
 ## Explaning the non-trivial components
@@ -59,7 +59,9 @@ needs to be converted to microseconds, so duration*1/16 [us], so the final calcu
 distance[cm] = durantion/(29 * 2 * 16) = durantion/928
 
 
-### [MG90S](https://www.electronicoscaldas.com/datasheet/MG90S_Tower-Pro.pdf) : Servo motor metal gear
+### [SG90](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf) : Servo motor 
+
+
 
 
 

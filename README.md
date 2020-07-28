@@ -85,6 +85,11 @@ was you can see in the image aboce the armor of the motor is 3 cm so the maximo 
 
 <img src="Tables_Imag/Tabua_graduada.png" width="170">
 
+When the ball is on the platform the torque maximo that the motor will fell pointing down is about 0.0608 N.m, that mean that weight the motor will feel is about 0.0608/((26-17)x10^-2^x9.81)=0.069 Kg. 
+On other hand the maximo torque pointing up is about 0.718 N.m  so the maximo wight the motor will eel is about 0.081 Kg.
+In conclusion the servo SG90 is more them enough to make the machine work.
+
+
 
 ### [MPU-6050](https://cdn.sparkfun.com/datasheets/Sensors/Accelerometers/MPU-6050.pdf) : Accelerometer and gyroscope module 3 axes
 

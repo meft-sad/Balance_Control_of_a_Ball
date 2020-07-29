@@ -41,7 +41,7 @@ The Echo pin it should be connect to an input pin of the microcontroller, becaus
 It was used the Timer 4 of the Arduino Mega 2560 wich is a 16-bits timer and it was configured with the mode Input Capture, so this timer is able to capture external evets and give the time at they ocur. With this in mind it was connected the Echo of the sonar to the Pin 49 (PL0) of the Arduino, that pin corresponds to
 the Interrupt of timer 4 (ICP4).
 
-<img src="Tables_Imag/Sonar_image.jpg" width="800">
+<img src="Tables_Imag/Sonar_image.jpg" width="500">
 
 
 Initially the Input Capture is sensitive to rising flank because is expected the beam of the reflect wave. Then the time of the ICR4 is saved in a variable (in this cases T1) and then the sensing mode is changed to falling flank waiting for to the wave ends and again saving the time in a variable (T2). By doing T2-T1 we would expect the time of the wave traveling to the object them being reflected and arriving to the Echo but the timer could have overflowed between the measurements. To overcame this problem, it was added an overflow interruption that corrects for this, as you can see in the following piece of code.
@@ -73,7 +73,7 @@ To calculate the torque that the motor need to do in a rest position was puted a
 
 And by measure the wight of the wooden block, which is approximately 7g,
 
-<img src="Tables_Imag/massas_bola_troque.png" width="3000">
+<img src="Tables_Imag/massas_bola_troque.png" width="500">
 
 is possible to calculate the torque by:
 
@@ -130,16 +130,20 @@ In this cse the PV is given by the sonar and with the following piece of code is
 
 
 ## Tuning the PID
+
 With the code for the PID written it was tunned the valeus for Kp, Kd and Ki. To do that I strated all valeus at 0 and increase the Kp gain until the response to a disturbance is steady oscillation and the ball is contained on the platform,
 
 than increase the Kd gain until the the oscillations go away, it's critically damped and them I increase the Ki gain until it the machine when it stops the ball it moves it to the setpoint.
 
+<img src="Tables_Imag/Valeus.png" width="300">
+
 ## Analise of Data
+
 After tuning the PID, the machine was tested, and it was found a problem that due to in the project we are working with a ball the sonar, when the ball is to far from the sensor, can not read the right position of the ball as you can see in the following graphs:
 
-<img src="Tables_Imag/1_Position_time.png" width="600">
+<img src="Tables_Imag/1_Position_time.png" width="500">
 
-<img src="Tables_Imag/1_Velocity.png" width="600">
+<img src="Tables_Imag/1_Velocity.png" width="500">
 
 With the velocity it was calculated the aceleration that the sensor was reading, presented in the next graph:
 
@@ -149,7 +153,11 @@ was you can see in majority of the cases the velocity is higher them 0.14 the ac
 
 <img src="Tables_Imag/PID_2.png" width="600">
 
+This code help a lot to solve the proble as in the following test is possible to see:
 
+<img src="Tables_Imag/2_Position_time.png" width="500">
+
+<img src="Tables_Imag/2_Velocity.png" width="500">
 
 # Test of the code
 In the following gif is showing one of the test done of the machine working and as you can see the objective of balance a ball and keep it in the middle is achieved.

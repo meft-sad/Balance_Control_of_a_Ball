@@ -149,7 +149,7 @@ In this case the PV is given by the sonar and with the following piece of code i
 
 With the code for the PID written it was tuned the values for Kp, Kd and Ki. To do that I started all values at 0 and increased the Kp gain until the response to a disturbance is steady oscillation and the ball is contained on the platform, then increase the Kd gain until the oscillations go away, it's critically damped, you can see it in the following gif:
 
-<iframe src='//gifs.com/embed/91Mrnz' frameborder='0' scrolling='no' width='486px' height='352px' style='-webkit-backface-visibility: hidden;-webkit-transform: scale(1);' ></iframe>
+![Alt Text](/Tables_Imag/test_D_P.gif)
 
 and then I increase the Ki gain until the situation that the system stabilizes the platform when it stops the ball after moving it to the setpoint.
 

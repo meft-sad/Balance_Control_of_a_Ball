@@ -141,7 +141,7 @@ A proportional–integral–derivative controller or PID for short,. A PID contr
 
 In this case the PV is given by the sonar and with the following piece of code is calculated the angle that the servo motor has to do based on the result of the PID, as you can see it is shown on the following piece of code:
 
-<img src="Tables_Imag/PID_1.png" width="600">
+<img src="Tables_Imag/PID__1.png" width="600">
 
 
 
@@ -169,7 +169,7 @@ With the velocity, it was calculated the acceleration that the sensor was readin
 
 As we can see in the majority of the cases the velocity is higher than 0.14 m s<sup>-1<\sup> so the acceleration is not realistic. To solve this problem, it was written a code to help eliminate this erratic sonar reading :
 
-<img src="Tables_Imag/PID_2.png" width="600">
+<img src="Tables_Imag/PID__2.png" width="600">
 
 This code helps a lot to solve the problem as in the following test is possible to see:
 

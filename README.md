@@ -55,7 +55,7 @@ Initially the Input Capture is sensitive to rising flanks because it is expected
 
 
 
-![tabella](Tables_Imag/Timer_4_ISR_2.png)
+![tabella](Tables_Imag/Timer_4_ISR.png)
 
 The time is given by "duration = T2-T1+65535*s_over" where s_over is all the time 0 but if an overflow occurs between T1 and T2 it's going to be 1.
 

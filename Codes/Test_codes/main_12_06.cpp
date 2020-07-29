@@ -190,7 +190,7 @@ int PID_Compute()
 
     	distance = readPosition((T2-T1));  
 
-		// Calculation of the erro
+		// Calculation of the error
     	distance_error = Setpoint - distance; 
 
 		// Calculation of the P 
@@ -204,15 +204,15 @@ int PID_Compute()
     	{
       		PID_i = PID_i + (Ki * distance_error);
    		}
-    	else // if the ball is in 27 cm or 26 cm range the integral parte stops
+    	else // if the ball is in setpoint-1 and setpoint+1 range the integral part stops
     	{
       		PID_i = 0;
     	}
   
     	PID_total = PID_p + PID_i + PID_d; 
 
-		// Maping the value of the PID to a range of angles
-    	PID_total = map(PID_total, -150, 150, 0, 180);
+		// Mapping the value of the PID to a range of angles
+    	PID_total = map(PID_total, -100, 100, 0, 180);
 
 		// Limiting the angles because in the setup the servo can not go to lower angles them 30º,
     	if(PID_total < 30)

@@ -98,7 +98,7 @@ The result is 5.4936x10^-3^ N.m, by checking in the datasheet the servo motor SG
 # sREVER
 
 was you can see in the image aboce the armor of the motor is 3 cm so the maximo weigth that the motor can handle is about 0.833 Kg and for the imgage bellow we can see that this motor is about 17.5 cm form the centro of equilibrion of the platform do the wight that the motor will feel when atach to the plaform is 3.29x10^-3^ Kg that corresponds a form point up of 3.23x10^-2^ N.
-s
+
 <img src="Tables_Imag/Tabua_graduada.png" width="170">
 
 When the ball is on the platform the maximum torque that the motor will fell pointing down is about 0.0608 N.m, that means that weight of the motor will fell is about 0.0608/((26-17)x10^-2^x9.81)=0.069 Kg.
@@ -167,7 +167,7 @@ With the velocity, it was calculated the acceleration that the sensor was readin
 
 <img src="Tables_Imag/1_Aceleration.png" width="600">
 
-As we can see in the majority of the cases the velocity is higher than 0.14 m s^-1^ so the acceleration is not realistic. To solve this problem, it was written a code to help eliminate this erratic sonar reading :
+As we can see in the majority of the cases the velocity is higher than 0.14 m s<sup>-1<\sup> so the acceleration is not realistic. To solve this problem, it was written a code to help eliminate this erratic sonar reading :
 
 <img src="Tables_Imag/PID_2.png" width="600">
 

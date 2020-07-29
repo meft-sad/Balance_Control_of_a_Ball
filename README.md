@@ -82,6 +82,7 @@ T<sub>rest</sub> = W x g x d
 where W is the weight, g the gravitational acceleration constant (9.81 m/s^2^) and d is the distance of the wodden block to the centre of equilibrion.
 
 The result is 5.4936x10^-3^ N.m, by cheking in the datasheet the sevo motor SG90 was a torque of 2.5 Kg-cm this mean that the motor will stall when a weight of 2.5 Kg is hanging from a 1 cm long arm that is attached to the motor spendle,
+
 <img src="Tables_Imag/Motor_escala.png" width="350">
 
 was you can see in the image aboce the armor of the motor is 3 cm so the maximo weigth that the motor can handle is about 0.833 Kg and for the imgage bellow we can see that this motor is about 17.5 cm form the centro of equilibrion of the platform do the wight that the motor will feel when atach to the plaform is 3.29x10^-3^ Kg that corresponds a form point up of 3.23x10^-2^ N.
@@ -126,14 +127,31 @@ In this cse the PV is given by the sonar and with the following piece of code is
 
 <img src="Tables_Imag/PID_1.png" width="600">
 
+
+
 ## Tuning the PID
 With the code for the PID written it was tunned the valeus for Kp, Kd and Ki. To do that I strated all valeus at 0 and increase the Kp gain until the response to a disturbance is steady oscillation and the ball is contained on the platform,
 
 than increase the Kd gain until the the oscillations go away, it's critically damped and them I increase the Ki gain until it the machine when it stops the ball it moves it to the setpoint.
 
+## Analise of Data
+After tuning the PID, the machine was tested, and it was found a problem that due to in the project we are working with a ball the sonar, when the ball is to far from the sensor, can not read the right position of the ball as you can see in the following graphs:
+
+<img src="Tables_Imag/1_Position_time.png" width="600">
+
+<img src="Tables_Imag/1_Velocity.png" width="600">
+
+With the velocity it was calculated the aceleration that the sensor was reading, presented in the next graph:
+
+<img src="Tables_Imag/1_Aceleration.png" width="600">
+
+was you can see in majority of the cases the velocity is higher them 0.14 the aceleration is not realistic so it was written a code to help eliminating this bad reading of the sonar:
+
+<img src="Tables_Imag/PID_2.png" width="600">
+
+
+
 # Test of the code
 In the following gif is showing one of the test done of the machine working and as you can see the objective of balance a ball and keep it in the middle is achieved.
 ![Alt Text](/Tables_Imag/test.gif)
-
-# Analise of Data
 

@@ -196,7 +196,7 @@ int PID_Compute()
 		// Calculation of the P 
     	PID_p = Kp * distance_error; 	
 
-    	// Calculation of the P  
+    	// Calculation of the D  
    		PID_d = Kd*(double)((double)distance_error - distance_previous_error)/period); 
 	
 		// Calulation of the I  

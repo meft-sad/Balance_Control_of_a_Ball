@@ -126,6 +126,11 @@ In this cse the PV is given by the sonar and with the following piece of code is
 
 <img src="Tables_Imag/PID_1.png" width="600">
 
+## Tuning the PID
+With the code for the PID written it was tunned the valeus for Kp, Kd and Ki. To do that I strated all valeus at 0 and increase the Kp gain until the response to a disturbance is steady oscillation and the ball is contained on the platform,
+
+than increase the Kd gain until the the oscillations go away, it's critically damped and them I increase the Ki gain until it the machine when it stops the ball it moves it to the setpoint.
+
 # Test of the code
 In the following gif is showing one of the test done of the machine working and as you can see the objective of balance a ball and keep it in the middle is achieved.
 ![Alt Text](/Tables_Imag/test.gif)

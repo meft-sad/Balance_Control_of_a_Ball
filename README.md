@@ -93,7 +93,7 @@ where W is the weight, g the gravitational acceleration constant (9.81 m/s^2) an
 
 The result is 5.4936x10^-3^ N.m, by checking in the datasheet the servo motor SG90 was a torque of 2.5 Kg-cm this mean that the motor will stall when a weight of 2.5 Kg it is hanging from a 1 cm long arm that is attached to the motor spindle,
 
-<img src="Tables_Imag/Motor_escala.png" width="350">
+<img src="Tables_Imag/Motor_escala_1.png" width="350">
 
 # sREVER
 

@@ -95,10 +95,10 @@ The result is 5.4936x10^-3^ N.m, by checking in the datasheet the servo motor SG
 
 <img src="Tables_Imag/Motor_escala.png" width="350">
 
-#REVER
+# sREVER
 
 was you can see in the image aboce the armor of the motor is 3 cm so the maximo weigth that the motor can handle is about 0.833 Kg and for the imgage bellow we can see that this motor is about 17.5 cm form the centro of equilibrion of the platform do the wight that the motor will feel when atach to the plaform is 3.29x10^-3^ Kg that corresponds a form point up of 3.23x10^-2^ N.
-
+s
 <img src="Tables_Imag/Tabua_graduada.png" width="170">
 
 When the ball is on the platform the maximum torque that the motor will fell pointing down is about 0.0608 N.m, that means that weight of the motor will fell is about 0.0608/((26-17)x10^-2^x9.81)=0.069 Kg.
@@ -131,6 +131,7 @@ To work with this type of display it is needed to send from Arduino to the HDSPB
 And after that using the ABC... scheme showed above it was coded the bit of the ports PF0 to PF7 to write the numbers:
 
 ![tabella](Tables_Imag/Code_numb.png)
+
 # PID
 
 A proportional–integral–derivative controller or PID for short,. A PID controller continuously calculates an error value as the difference between a desired setpoint (SP), in this case is the position that we want the ball, and a measured process variable (PV) and applies a correction based on proportional, integral, and derivative terms (denoted P, I, and D respectively), hence the name.

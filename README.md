@@ -89,21 +89,21 @@ is possible to calculate the torque by:
 
 T<sub>rest</sub> = W x g x d
 
-where W is the weight, g the gravitational acceleration constant (9.81 m/s^2) and d is the distance of the wood block to the center of equilibrium.
+where W is the weight, g the gravitational acceleration constant (9.81 m/s<sup>2</sup>) and d is the distance of the wood block to the center of equilibrium.
 
-The result is 5.4936x10^-3^ N.m, by checking in the datasheet the servo motor SG90 was a torque of 2.5 Kg-cm this mean that the motor will stall when a weight of 2.5 Kg it is hanging from a 1 cm long arm that is attached to the motor spindle,
+The result is 5.4936x10<sup>-3</sup> N.m, by checking in the datasheet the servo motor SG90 was a torque of 2.5 Kg-cm this mean that the motor will stall when a weight of 2.5 Kg it is hanging from a 1 cm long arm that is attached to the motor spindle,
 
 <img src="Tables_Imag/Motor_escala_1.png" width="350">
 
 
-as you can see in the image aboce the armor of the motor is 3 cm so the maximum weight that the motor can handle is about 0.833 Kg and for the image bellow we can see that this motor is about 17.5 cm form the center of equilibrium of the platform do the weight that the motor will feel when attached to the platform is 3.29x10^-3^ Kg that corresponds a form point up of 3.23x10^-2^ N.
+as you can see in the image aboce the armor of the motor is 3 cm so the maximum weight that the motor can handle is about 0.833 Kg and for the image bellow we can see that this motor is about 17.5 cm form the center of equilibrium of the platform do the weight that the motor will feel when attached to the platform is 3.29x10<sup>-3</sup> Kg that corresponds a form point up of 3.23x10<sup>-2</sup> N.
 
 <img src="Tables_Imag/Tabua_graduada.png" width="170">
 
-When the ball is on the platform the maximum torque that the motor will fell pointing down is about 0.0608 N.m, that means that weight of the motor will fell is about 0.0608/((26-17)x10^-2^x9.81)=0.069 Kg.
+When the ball is on the platform the maximum torque that the motor will fell pointing down is about 0.0608 N.m, that means that weight of the motor will fell is about 0.0608/((26-17)x10<sup>-2</sup>x9.81)=0.069 Kg.
  
 
-On other hand the maximum torque pointing up is about 0.718 N.m so the maximum weight that the motor will fell is about 0.081 Kg. In conclusion the servo SG90 is more than enough to make the machine work.
+On other hand the maximum torque pointing up is about 0.0718 N.m so the maximum weight that the motor will fell is about 0.081 Kg. In conclusion the servo SG90 is more than enough to make the machine work.
 
 #### How SG90 works
 
@@ -216,6 +216,10 @@ This code helps a lot to solve the problem as in the following test is possible 
 <img src="Tables_Imag/2_Velocity.png" width="500">
 
 # Conclusion 
+
+The project was successfully carried out with all the similarities made, the bullet returned to its intended position. There are small problems when the ball moves too far away from the sonar, which is to be expected due to the spherical shape of the wave, which is difficult to reflect the wave, this is the reason why we had errors in reading the position of the ball.
+
+A solution that could be applied in the future will be to replace the sonar with the GP2Y0A21YK sensor, which is an infrared proximity sensor, which can measure distances between 10-80 cm, so the only care we should take is placing it 10 cm off the platform.
 
 
 

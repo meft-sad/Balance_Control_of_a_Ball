@@ -33,7 +33,7 @@ The sensors used in this project and corresponding datasheet are:
 
 * [HC-SR04](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/HCSR04.pdf) : Sonar to measure distances;
 * [SG90](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf) : Servo motor;
-* [MPU-6050](https://cdn.sparkfun.com/datasheets/Sensors/Accelerometers/MPU-6050.pdf) : Accelerometer and gyroscope module 3 axes.
+* [MPU-6050](/Datasheet/MPU-6050.pdf) : Accelerometer and gyroscope module 3 axes.
 
 ## Explaning the non-trivial components
 
@@ -117,7 +117,45 @@ For this part of the project it was used in the library of Arduino Servo because
 
 This was found a bit too late, but with this information I could correct the code, so I had to move the servo with the Servo library.
 
-### [MPU-6050](https://cdn.sparkfun.com/datasheets/Sensors/Accelerometers/MPU-6050.pdf) : Accelerometer and gyroscope module 3 axes
+### [MPU-6050](/Datasheet/MPU-6050.pdf) : Accelerometer and gyroscope module 3 axes
+
+The MPU-6050 was used in this work to measur the angle of the platforme. This sensor uses I<sub>2</sub>C, so you have to conect the SDC and the SCL to to Arduino port's SDA and SCL, in this case the Arduino is the master and controls when the MPU-6050, to facilitate this part of programing it was used the libary Wire to handle the buffers.
+
+But basicly the I<sub>2</sub>C works the following way:
+
+To read:
+– Before reading data from a slave device, you must tell it
+which of its internal addresses you want to read
+– A read starts off by writing to the slave
+
+Like is showed in the following piece of code:
+
+<img src="Tables_Imag/MPU_code.png" width="680">
+
+
+• Procedure
+1. Send a start sequence
+2. Send I2C address of the device with the R/W bit low (even
+address)
+3. Send the Internal register address
+4. Send a start sequence again (repeated start)
+5. Send the I2C address of the device with the R/W bit high
+(odd address)
+6. Read data byte from the register
+7. Send the stop sequence.
+
+The bits that the MPU-6050 send correspond to:
+
+<img src="Tables_Imag/Table_1_MPU.png" width="650">
+
+On the data sheat is told that the data raw that is needed to be divided for 16384 when the full scale range is +/- 2g so since in this case the force is so low when the platform changes I used this valeu.
+
+<img src="Tables_Imag/Table_2_MPU.png" width="350">
+
+With the accelerometer measurements its possible to get the angle by doing the following equation:
+
+<img src="Tables_Imag/equation.png" width="170">
+
 
 
 ### [HDSP-B0xE](http://www.farnell.com/datasheets/2095876.pdf) :  Four digit seven segment display

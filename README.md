@@ -205,7 +205,7 @@ With the velocity, it was calculated the acceleration that the sensor was readin
 
 <img src="Tables_Imag/1_Aceleration.png" width="600">
 
-As we can see in the majority of the cases the velocity is higher than 0.14 m s<sup>-1<\sup> so the acceleration is not realistic. To solve this problem, it was written a code to help eliminate this erratic sonar reading :
+As we can see in the majority of the cases the velocity is higher than 0.14 m s<sup>-1</sup> so the acceleration is not realistic. To solve this problem, it was written a code to help eliminate this erratic sonar reading :
 
 <img src="Tables_Imag/PID__2.png" width="600">
 

@@ -465,7 +465,7 @@ ISR(TIMER4_CAPT_vect)
 
 }
 
-//Takes in count the overflow of the timer 4 inportant when meauser the distance
+//Takes in count the overflow of the timer 4 important when measure the distance
 ISR(TIMER4_OVF_vect)
 {
 	if (TCCR4B & ~(1 << ICES1))

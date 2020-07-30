@@ -47,7 +47,7 @@ The Echo pin should be connected to an input pin of the microcontroller, because
 
 #### Input Capture Mode
 
-It was used the Timer 4 of the Arduino Mega 2560 which is a 16-bits timer and it was configured with the mode Input Capture, so this timer is able to capture external events and give the time at which they occur. With this in mind it connected the Echo of the sonar to the Pin 49 (PL0) of the Arduino, that pin corresponds to the Interrupt of timer 4 (ICP4).
+It was used the Timer 4 of the Arduino Mega 2560 which is a 16-bits timer and it was configured with the mode Input Capture, so this timer is able to capture external events and give the time at which they occur. With this in mind it's connected the Echo of the sonar to the Pin 49 (PL0) of the Arduino, that pin corresponds to the Interrupt of timer 4 (ICP4).
 
 <img src="Tables_Imag/Sonar_image.jpg" width="500">
 
@@ -55,7 +55,7 @@ Initially the Input Capture is sensitive to rising flanks because it is expected
 
 
 
-![tabella](Tables_Imag/Timer_4_ISR.png)
+![tabella](Tables_Imag/Timer_4_ISR_2.png)
 
 The time is given by "duration = T2-T1+65535*s_over" where s_over is all the time 0 but if an overflow occurs between T1 and T2 it's going to be 1.
 
@@ -74,14 +74,14 @@ distance[cm] = duration/(29 * 2 * 16) = duration/928
 
 ### [SG90](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf) : Servo motor 
 
-In the work the servo motor is used to move the platform. So the first thing that is important to do is to estimate the torque needed to move the platform and get a motor with that or higher torque.
+In the work the servo motor is used to move the platform. So, the first thing that is important to do is to estimate the torque needed to move the platform and get a motor with that or higher torque.
 
 To calculate the torque that the motor we need to achieve a rest position (90º) putting a weight in different positions until the platform reach the balance:
 
 
 <img src="Tables_Imag/visão_cima_troque_escala.png" width="3000">
 
-And by measure the weight of the wood block, which is approximately 7g,
+And by measure the weight of the wood block, which is approximately 8g,
 
 <img src="Tables_Imag/massas_bola_troque.png" width="500">
 
@@ -96,14 +96,14 @@ The result is 5.4936x10^-3^ N.m, by checking in the datasheet the servo motor SG
 <img src="Tables_Imag/Motor_escala_1.png" width="350">
 
 
-was you can see in the image aboce the armor of the motor is 3 cm so the maximo weigth that the motor can handle is about 0.833 Kg and for the imgage bellow we can see that this motor is about 17.5 cm form the centro of equilibrion of the platform do the wight that the motor will feel when atach to the plaform is 3.29x10^-3^ Kg that corresponds a form point up of 3.23x10^-2^ N.
+as you can see in the image aboce the armor of the motor is 3 cm so the maximum weight that the motor can handle is about 0.833 Kg and for the image bellow we can see that this motor is about 17.5 cm form the center of equilibrium of the platform do the weight that the motor will feel when attached to the platform is 3.29x10^-3^ Kg that corresponds a form point up of 3.23x10^-2^ N.
 
 <img src="Tables_Imag/Tabua_graduada.png" width="170">
 
 When the ball is on the platform the maximum torque that the motor will fell pointing down is about 0.0608 N.m, that means that weight of the motor will fell is about 0.0608/((26-17)x10^-2^x9.81)=0.069 Kg.
  
 
-On other hand the maximum torque pointing up is about 0.718 N.m so the maximum weight that the motor will fall is about 0.081 Kg. In conclusion the servo SG90 is more than enough to make the machine work.
+On other hand the maximum torque pointing up is about 0.718 N.m so the maximum weight that the motor will fell is about 0.081 Kg. In conclusion the servo SG90 is more than enough to make the machine work.
 
 #### How SG90 works
 
@@ -119,9 +119,9 @@ This was found a bit too late, but with this information I could correct the cod
 
 ### [MPU-6050](/Datasheet/MPU-6050.pdf) : Accelerometer and gyroscope module 3 axes
 
-The MPU-6050 was used in this work to measur the angle of the platforme. This sensor uses I<sub>2</sub>C, so you have to conect the SDC and the SCL to to Arduino port's SDA and SCL, in this case the Arduino is the master and controls when the MPU-6050, to facilitate this part of programing it was used the libary Wire to handle the buffers.
+The MPU-6050 was used in this work to measure the angle of the platform. This sensor uses I<sub>2</sub>C, so you have to connect the SDC and the SCL to the Arduino port's SDA and SCL, in this case the Arduino is the master and controls the MPU-6050, to facilitate this part of programming it was used the library Wire to handle the buffers.
 
-But basicly the I<sub>2</sub>C works the following way:
+But basically the I<sub>2</sub>C works the following way:
 
 To read:
 – Before reading data from a slave device, you must tell it
@@ -148,11 +148,11 @@ The bits that the MPU-6050 send correspond to:
 
 <img src="Tables_Imag/Table_1_MPU.png" width="650">
 
-On the data sheat is told that the data raw that is needed to be divided for 16384 when the full scale range is +/- 2g so since in this case the force is so low when the platform changes I used this valeu.
+On the datasheet is told that the data raw that is needed to be divided for 16384 when the full scale range is +/- 2g so since in this case the force is so low when the platform changes I used this value.
 
 <img src="Tables_Imag/Table_2_MPU.png" width="350">
 
-With the accelerometer measurements its possible to get the angle by doing the following equation:
+With the accelerometer measurements it's possible to get the angle by doing the following equation:
 
 <img src="Tables_Imag/equation.png" width="170">
 
@@ -171,7 +171,7 @@ And after that using the ABC... scheme showed above it was coded the bit of the 
 
 # PID
 
-A proportional–integral–derivative controller or PID for short,. A PID controller continuously calculates an error value as the difference between a desired setpoint (SP), in this case is the position that we want the ball, and a measured process variable (PV) and applies a correction based on proportional, integral, and derivative terms (denoted P, I, and D respectively), hence the name.
+A proportional–integral–derivative controller or PID for short. A PID controller continuously calculates an error value as the difference between a desired setpoint (SP), in this case is the position that we want the ball, and a measured process variable (PV) and applies a correction based on proportional, integral, and derivative terms (denoted P, I, and D respectively), hence the name.
 
 
 <img src="Tables_Imag/PID.png" width="450">
@@ -215,10 +215,9 @@ This code helps a lot to solve the problem as in the following test is possible 
 
 <img src="Tables_Imag/2_Velocity.png" width="500">
 
-# Test of the code
+# Conclusion 
 
-In the following gif is showing one of machine working tests and as we can watch the objective of balance a ball and keep it in the middle is achieved.
-![Alt Text](/Tables_Imag/test.gif)
+
 
 ![Alt Text](/Tables_Imag/test.gif)
 

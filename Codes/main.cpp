@@ -1,14 +1,9 @@
 #include <Arduino.h>
-//#include <avr/io.h>
-//#include <util/delay.h>
-//#include <avr/interrupt.h>
 #include <Wire.h>
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
 #include<Servo.h>
-//#include<PID_v1.h>
-//#include "wiring_private.h"
 
 
 
@@ -58,9 +53,9 @@ double distance_previous_error;
 
 double Setpoint, Input, Output, ServoOutput; 
 
-float Kp = 1.5;			//Initial Proportional Gain
-float Ki = 0.05;		//Initial Integral Gain
-float Kd = 65;			//Intitial Derivative Gain
+float Kp = 1.5;			//Initial Proportional Gain [1/cm]
+float Ki = 0.05;		//Initial Integral Gain  [1/cm]
+float Kd = 65;			//Intitial Derivative Gain [ms/cm]
 
 double pri_vel=0.01; 	// For the corretion of the velocity 
 double pri_pos = 0;		// For the corretion of the poaition 

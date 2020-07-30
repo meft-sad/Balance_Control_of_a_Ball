@@ -192,7 +192,7 @@ With the code for the PID written it was tuned the values for Kp, Kd and Ki. To 
 
 and then I increase the Ki gain until the situation that the system stabilizes the platform when it stops the ball after moving it to the setpoint.
 
-<img src="Tables_Imag/Valeus_PID.png" width="300">
+<img src="Tables_Imag/Valeus_PID_1.png" width="300">
 
 In this case the Kp is in 1/cm since it will be multiplied by a difference of position, the Ki is the same and the Kd was the units of ms/cm since it is multipled by a velocity. This is importante because since we are going to soma the PID_p, PID_d and PID_i this variable have to be dimensionless.
 

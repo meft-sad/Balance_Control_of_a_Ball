@@ -95,7 +95,6 @@ The result is 5.4936x10^-3^ N.m, by checking in the datasheet the servo motor SG
 
 <img src="Tables_Imag/Motor_escala_1.png" width="350">
 
-# sREVER
 
 was you can see in the image aboce the armor of the motor is 3 cm so the maximo weigth that the motor can handle is about 0.833 Kg and for the imgage bellow we can see that this motor is about 17.5 cm form the centro of equilibrion of the platform do the wight that the motor will feel when atach to the plaform is 3.29x10^-3^ Kg that corresponds a form point up of 3.23x10^-2^ N.
 

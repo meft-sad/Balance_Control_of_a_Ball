@@ -187,18 +187,13 @@ int PID_Compute()
 	if (millis() > time+period)
   	{
     	time = millis();   
-
     	distance = readPosition((T2-T1));  
-
 		// Calculation of the error
     	distance_error = Setpoint - distance; 
-
 		// Calculation of the P 
-    	PID_p = Kp * distance_error; 	
-
+    	PID_p = Kp * distance_error; 
     	// Calculation of the D  
    		PID_d = Kd*(double)((double)distance_error - distance_previous_error)/period); 
-	
 		// Calulation of the I  
     	if(-1 < distance_error && distance_error < 1)
     	{
@@ -208,12 +203,9 @@ int PID_Compute()
     	{
       		PID_i = 0;
     	}
-  
     	PID_total = PID_p + PID_i + PID_d; 
-
 		// Mapping the value of the PID to a range of angles
     	PID_total = map(PID_total, -100, 100, 0, 180);
-
 		// Limiting the angles because in the setup the servo can not go to lower angles them 30º,
     	if(PID_total < 30)
 		{

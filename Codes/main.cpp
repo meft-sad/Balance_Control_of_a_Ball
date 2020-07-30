@@ -191,6 +191,8 @@ void set_timers()
 	sei();
 }
 
+
+
 // Set the pins for the sonar
 void set_sonar()
 {
@@ -320,7 +322,6 @@ float readPosition(float duration)
 }
 
 
-double posi_3=0;
 
 int PID_Compute()
 {

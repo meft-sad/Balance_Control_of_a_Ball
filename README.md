@@ -64,11 +64,11 @@ The time is given by "duration = T2-T1+65535*s_over" where s_over is all the tim
 
 To get the distance we need to multiply the time that the wave travels by the speed of the sound in the air and divide it by 2 because the wave travels the double of the distance of ball position, so:
 
-distance = (duration * speed_sound)/2
+distance = (duration * speed_sound)/2 [cm]
 
 The speed of sound is 340 m/s to convert it to units that are used on the Arduino, such as microsecond, the speed of sound is equal to 0.0340 [cm/us] (29 [us/cm]) and since we are using the timer 4 with no prescaler the duration needs to be converted to microseconds, so duration*1/16 [us], so the final calculation is:
 
-distance[cm] = duration/(29 * 2 * 16) = duration/928
+distance = duration/(29 * 2 * 16) = duration/928 [cm]
 
 
 
@@ -91,19 +91,19 @@ T<sub>rest</sub> = W x g x d
 
 where W is the weight, g the gravitational acceleration constant (9.81 m/s<sup>2</sup>) and d is the distance of the wood block to the center of equilibrium.
 
-The result is 5.4936x10<sup>-3</sup> N.m, by checking in the datasheet the servo motor SG90 was a torque of 2.5 Kg-cm this mean that the motor will stall when a weight of 2.5 Kg it is hanging from a 1 cm long arm that is attached to the motor spindle,
+The result is 5.4936x10<sup>-3</sup> N.m, by checking in the datasheet the servo motor SG90 was a torque of 2.5 kg-cm this mean that the motor will stall when a weight of 2.5 kg it is hanging from a 1 cm long arm that is attached to the motor spindle,
 
 <img src="Tables_Imag/Motor_escala_1.png" width="350">
 
 
-as you can see in the image aboce the armor of the motor is 3 cm so the maximum weight that the motor can handle is about 0.833 Kg and for the image bellow we can see that this motor is about 17.5 cm form the center of equilibrium of the platform do the weight that the motor will feel when attached to the platform is 3.29x10<sup>-3</sup> Kg that corresponds a form point up of 3.23x10<sup>-2</sup> N.
+as you can see in the image aboce the armor of the motor is 3 cm so the maximum weight that the motor can handle is about 0.833 Kg and for the image bellow we can see that this motor is about 17.5 cm form the center of equilibrium of the platform do the weight that the motor will feel when attached to the platform is 3.29x10<sup>-3</sup> kg that corresponds a form point up of 3.23x10<sup>-2</sup> N.
 
 <img src="Tables_Imag/Tabua_graduada.png" width="170">
 
-When the ball is on the platform the maximum torque that the motor will fell pointing down is about 0.0608 N.m, that means that weight of the motor will fell is about 0.0608/((26-17)x10<sup>-2</sup>x9.81)=0.069 Kg.
+When the ball is on the platform the maximum torque that the motor will fell pointing down is about 0.0608 N.m, that means that weight of the motor will fell is about 0.0608/((26-17)x10<sup>-2</sup>x9.81)=0.069 kg.
  
 
-On other hand the maximum torque pointing up is about 0.0718 N.m so the maximum weight that the motor will fell is about 0.081 Kg. In conclusion the servo SG90 is more than enough to make the machine work.
+On other hand the maximum torque pointing up is about 0.0718 N.m so the maximum weight that the motor will fell is about 0.081 kg. In conclusion the servo SG90 is more than enough to make the machine work.
 
 #### How SG90 works
 
@@ -223,7 +223,7 @@ This code helps a lot to solve the problem as in the following test is possible 
 
 ## Changing the valeu of Kd
 
-After this the kd value was modified to 200 and better revolts were obtained, that is, the ball recovers the desired position more quickly:
+After this the Kd value was modified to 200 and better revolts were obtained, that is, the ball recovers the desired position more quickly:
 
 <img src="Tables_Imag/Position_time_Kd_200.png" width="500">
 
@@ -231,7 +231,7 @@ After this the kd value was modified to 200 and better revolts were obtained, th
 
 ![Alt Text](/Tables_Imag/kd_200.gif)
 
-as expected
+as expected incresing Kd will cause the control system to react more strongly to changes in the error parameter by increasing the speed of the overall system control response.
 
 # Conclusion and improvements
 

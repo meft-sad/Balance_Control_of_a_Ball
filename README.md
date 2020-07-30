@@ -184,6 +184,8 @@ In this case the PV is given by the sonar and with the following piece of code i
 
 ## Tuning the PID
 
+<img src="Tables_Imag/PID_2.png" width="300">
+
 With the code for the PID written it was tuned the values for Kp, Kd and Ki. To do that I started all values at 0 and increased the Kp gain until the response to a disturbance is steady oscillation and the ball is contained on the platform, then increase the Kd gain until the oscillations go away, it's critically damped, you can see it in the following gif:
 
 ![Alt Text](/Tables_Imag/test_D_P.gif)
@@ -191,6 +193,8 @@ With the code for the PID written it was tuned the values for Kp, Kd and Ki. To 
 and then I increase the Ki gain until the situation that the system stabilizes the platform when it stops the ball after moving it to the setpoint.
 
 <img src="Tables_Imag/Valeus_PID.png" width="300">
+
+In this case the Kp is in 1/cm since it will be multiplied by a difference of position, the Ki is the same and the Kd was the units of ms/cm since it is multipled by a velocity. This is importante because since we are going to soma the PID_p, PID_d and PID_i this variable have to be dimensionless.
 
 ## Data Analysis
 
@@ -226,6 +230,8 @@ After this the kd value was modified to 200 and better revolts were obtained, th
 <img src="Tables_Imag/Velocity_time_Kd_200.png" width="500">
 
 ![Alt Text](/Tables_Imag/kd_200.gif)
+
+as expected
 
 # Conclusion and improvements
 

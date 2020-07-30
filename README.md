@@ -196,6 +196,9 @@ and then I increase the Ki gain until the situation that the system stabilizes t
 
 In this case the Kp is in 1/cm since it will be multiplied by a difference of position, the Ki is the same and the Kd was the units of ms/cm since it is multipled by a velocity. This is importante because since we are going to soma the PID_p, PID_d and PID_i this variable have to be dimensionless.
 
+
+If the speed is calculated in cm / s instead of cm / ms, the value of Kd must be multiplied by 0.001, then the value becomes 0.065 s/cm.
+
 ## Data Analysis
 
 After tuning the PID, the machine was tested, and it was found a problem that due to in the project we are working with a ball the sonar, when the ball is too far from the sensor, it cannot read the right position of the ball as we can see in the following graphs:
@@ -223,7 +226,7 @@ This code helps a lot to solve the problem as in the following test is possible 
 
 ## Changing the valeu of Kd
 
-After this the Kd value was modified to 200 and better results were obtained, that is, the ball recovers the desired position more quickly:
+After this the Kd value was modified to 200 ms/cm (0.2 s/cm if the velocity is calculated in cm/s) and better results were obtained, that is, the ball recovers the desired position more quickly:
 
 <img src="Tables_Imag/Position_time_Kd_200.png" width="500">
 

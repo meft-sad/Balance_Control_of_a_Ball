@@ -223,7 +223,7 @@ This code helps a lot to solve the problem as in the following test is possible 
 
 ## Changing the valeu of Kd
 
-After this the Kd value was modified to 200 and better revolts were obtained, that is, the ball recovers the desired position more quickly:
+After this the Kd value was modified to 200 and better results were obtained, that is, the ball recovers the desired position more quickly:
 
 <img src="Tables_Imag/Position_time_Kd_200.png" width="500">
 

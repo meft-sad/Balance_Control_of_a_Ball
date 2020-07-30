@@ -201,6 +201,8 @@ After tuning the PID, the machine was tested, and it was found a problem that du
 
 <img src="Tables_Imag/1_Velocity.png" width="500">
 
+![Alt Text](/Tables_Imag/test.gif)
+
 With the velocity, it was calculated the acceleration that the sensor was reading, presented in the next graph:
 
 <img src="Tables_Imag/1_Aceleration.png" width="600">
@@ -211,11 +213,21 @@ As we can see in the majority of the cases the velocity is higher than 0.14 m s<
 
 This code helps a lot to solve the problem as in the following test is possible to see:
 
-<img src="Tables_Imag/2_Position_time.png" width="500">
+<img src="Tables_Imag/2_Position_tim_.png" width="500">
 
 <img src="Tables_Imag/2_Velocity.png" width="500">
 
-# Conclusion 
+## Changing the valeu of Kd
+
+After this the kd value was modified to 200 and better revolts were obtained, that is, the ball recovers the desired position more quickly:
+
+<img src="Tables_Imag/Position_time_Kd_200.png" width="500">
+
+<img src="Tables_Imag/Velocity_time_Kd_200.png" width="500">
+
+![Alt Text](/Tables_Imag/kd_200.gif)
+
+# Conclusion and improvements
 
 The project was successfully carried out with all the similarities made, the bullet returned to its intended position. There are small problems when the ball moves too far away from the sonar, which is to be expected due to the spherical shape of the wave, which is difficult to reflect the wave, this is the reason why we had errors in reading the position of the ball.
 
@@ -223,5 +235,5 @@ A solution that could be applied in the future will be to replace the sonar with
 
 
 
-![Alt Text](/Tables_Imag/test.gif)
+
 

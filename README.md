@@ -213,9 +213,9 @@ As we can see in the majority of the cases the velocity is higher than 0.14 m s<
 
 This code helps a lot to solve the problem as in the following test is possible to see:
 
-<img src="Tables_Imag/2_Position_tim_.png" width="500">
+<img src="Tables_Imag/2_Position_tim_.png" width="550">
 
-<img src="Tables_Imag/2_Velocity.png" width="500">
+<img src="Tables_Imag/2_Velocity.png" width="550">
 
 ## Changing the valeu of Kd
 

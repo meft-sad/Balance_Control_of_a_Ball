@@ -388,7 +388,6 @@ int PID_Compute()
 		} 
 		distance_previous_error=distance_error;
 		pri_vel = atual_vel;
-		posi_3=pri_pos;
 		pri_pos = pos_atual;	
 	}
 	return PID_total;

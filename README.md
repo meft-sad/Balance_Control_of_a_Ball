@@ -135,11 +135,11 @@ Like is showed in the following piece of code:
 
 • Procedure
 1. Send a start sequence
-2. Send I2C address of the device with the R/W bit low (even
+2. Send I<sub>2</sub>C address of the device with the R/W bit low (even
 address)
 3. Send the Internal register address
 4. Send a start sequence again (repeated start)
-5. Send the I2C address of the device with the R/W bit high
+5. Send the I<sub>2</sub>C address of the device with the R/W bit high
 (odd address)
 6. Read data byte from the register
 7. Send the stop sequence.
@@ -171,7 +171,7 @@ And after that using the ABC... scheme showed above it was coded the bit of the 
 
 # PID
 
-A proportional–integral–derivative controller or PID for short. A PID controller continuously calculates an error value as the difference between a desired setpoint (SP), in this case is the position that we want the ball, and a measured process variable (PV) and applies a correction based on proportional, integral, and derivative terms (denoted P, I, and D respectively), hence the name.
+A proportional–integral–derivative controller or PID for short, continuously calculates an error value as the difference between a desired setpoint (SP), in this case is the position that we want the ball, and a measured process variable (PV) and applies a correction based on proportional, integral, and derivative terms (denoted P, I, and D respectively), hence the name.
 
 
 <img src="Tables_Imag/PID.png" width="450">

@@ -1,4 +1,4 @@
-# Balance Contol of a Ball
+# Balance Control of a Ball
 
 ###### By: Pedro Rossa
 
